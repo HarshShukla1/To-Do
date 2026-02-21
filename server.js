@@ -1,6 +1,7 @@
 const express = require("express")
 const morgan  = require("morgan")
 const dotenv = require("dotenv")
+const cors = require("cors")
 
 //env config
 
@@ -13,12 +14,11 @@ const app = express()
 //middleware
 
 app.use(express.json())
+app.use(cors())
 app.use(morgan("dev"))
 
 //routes
-app.get("/test" , (req,res)=>{
-    res.status(200).send("<h1> welcome to node server</h1>")
-})
+app.use('/api/v1/test',require('./routes/testRouter'))
 
 
 //port
